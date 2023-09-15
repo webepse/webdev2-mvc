@@ -22,6 +22,8 @@
                 }else{
                     throw new Exception('Aucun identifiant de billet envoyé');
                 }
+            }else{
+                throw new Exception("La page que vous cherchez, n'existe pas (ou plus)");
             }
         }else{
             // page home
@@ -31,6 +33,6 @@
     }catch(Exception $e)
     {
         $errorMessage = $e->getMessage();
-        echo $errorMessage;
+        require "view/frontend/errorView.php";
     }
 
