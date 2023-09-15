@@ -26,6 +26,13 @@
     endif;
 ?>
 <h2>Les commentaires</h2>
+<?php 
+    if(isset($myError))
+    {
+        echo "<div>Une erreur est survenue (code erreur: ".$myError." )</div>";
+    }
+
+?>
 <form action="index.php?action=addComment&id=<?= $post['id'] ?>" method='POST'>
     <div>
         <label for="author">Auteur: </label>

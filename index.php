@@ -14,6 +14,14 @@
                 }else{
                     throw new Exception('Aucun identifiant de billet envoyé');
                 }
+            }elseif($_GET['action']=="addComment")
+            {
+                if(isset($_GET['id']))
+                {
+                    postCommentController($_GET['id']);
+                }else{
+                    throw new Exception('Aucun identifiant de billet envoyé');
+                }
             }
         }else{
             // page home
@@ -23,6 +31,6 @@
     }catch(Exception $e)
     {
         $errorMessage = $e->getMessage();
-
+        echo $errorMessage;
     }
 

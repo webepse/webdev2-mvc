@@ -21,7 +21,7 @@
      * @param integer $id
      * @return array
      */
-    function getPost(int $id): array
+    function getPost(int $id): array|bool
     {
         $db = dbConnect();
         $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%i") AS creation_date_fr FROM posts WHERE id=?');
@@ -30,6 +30,20 @@
         $req->closeCursor();
 
         return $donReq;
+    }
+
+    function postComment(int $id, string $auhtor, string $comment): bool
+    {
+        $db = dbConnect();
+        $insert = $db->prepare("INSERT INTO comments(author,comment,comment_date,post_id) VALUES(:a,:c,NOW(),:i)");
+        $affectedLines = $insert->execute([
+            ":a"=>$auhtor,
+            ":c"=>$comment,
+            ":i"=>$id
+        ]);
+
+        return $affectedLines;
+
     }
     
     /**
