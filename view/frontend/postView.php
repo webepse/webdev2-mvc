@@ -25,7 +25,7 @@
         endforeach;     
     endif;
 ?>
-
+<h2>Les commentaires</h2>
 <form action="index.php?action=addComment&id=<?= $post['id'] ?>" method='POST'>
     <div>
         <label for="author">Auteur: </label>
